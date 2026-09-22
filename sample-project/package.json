@@ -1,0 +1,11 @@
+{
+  "name": "atlas-todo-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny zero-dependency todo CLI for testing Code Atlas.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test test/store.test.js"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "polyglot-sample",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Mixed-language fixture for Code Atlas",
+  "scripts": { "build": "sh scripts/build.sh" }
+}

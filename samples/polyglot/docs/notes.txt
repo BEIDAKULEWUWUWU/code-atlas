@@ -1,0 +1,4 @@
+Scratch notes.
+
+Sizes here are arbitrary on purpose: the viewer's whole claim is that tile area tracks code
+size, so the fixture needs an uneven spread rather than a uniform grid.

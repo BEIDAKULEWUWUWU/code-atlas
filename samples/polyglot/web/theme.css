@@ -1,0 +1,4 @@
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #101614; --ink: #eef3f1; }
+  .card { border-color: rgba(255, 255, 255, 0.14); }
+}
