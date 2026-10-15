@@ -48,7 +48,7 @@ node tools/scan.js --help
 运行检查：
 
 ```bash
-npm run check
+npm run check      # 124 项，不需要浏览器
 ```
 
 ## 许可
