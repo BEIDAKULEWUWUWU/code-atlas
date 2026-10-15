@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" data-i18n-content="appDescription" content="Code Atlas：用一张图理解项目结构、规模和模块关系。">
+  <title data-i18n="appTitle">代码地图</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" data-i18n-label="brandHome" aria-label="代码地图首页"><span class="brand-mark">⌘</span><strong data-i18n="appTitle">代码地图</strong></a>
+      <div class="top-actions"><label class="search-box"><span>⌕</span><input id="search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="搜索文件、模块..." data-i18n-label="searchLabel" aria-label="搜索项目节点"></label><span id="dataset-chip" class="dataset-chip" hidden><span id="dataset-name"></span><button id="remove-button" class="chip-remove" type="button" data-i18n-label="removeDataset" aria-label="移除已导入的数据" data-i18n-title="removeDataset" title="移除已导入的数据">×</button></span><span id="lang-toggle" class="lang-toggle" role="group" data-i18n-label="langGroup" aria-label="界面语言"><button class="lang-mode" type="button" data-lang="zh" data-i18n-title="langZh" title="中文界面">中</button><button class="lang-mode" type="button" data-lang="en" data-i18n-title="langEn" title="英文界面">EN</button></span><button id="folder-button" class="button button-ghost" type="button" data-i18n="chooseFolder">选择文件夹</button><button id="import-button" class="button button-ghost" type="button" data-i18n="importJson">导入 JSON</button><input id="file-input" type="file" accept="application/json,.json" hidden><input id="folder-input" type="file" webkitdirectory directory multiple hidden></div>
+    </header>
+    <section class="workspace">
+      <aside id="sidebar" class="sidebar is-empty"><div class="side-empty col-empty"><span class="col-empty-glyph">▤</span><strong data-i18n="noProject">还没有项目</strong><p data-i18n-html="noProjectHint">导入项目后，这里会列出<br>规模、语言构成和目录结构</p></div><div id="stats" class="stats-grid"></div><div class="side-section"><div class="section-title"><span data-i18n="languagesHeading">语言构成</span></div><div id="languages" class="lang-list"></div></div><div class="side-section"><div class="section-title"><span data-i18n="structureHeading">目录结构</span><button id="expand-button" class="text-button" type="button" data-i18n="expandAll">展开全部</button></div><div id="tree" class="tree" role="tree"></div></div><div class="side-tip"><span class="tip-icon">i</span><p data-i18n="clickTip">点击地图节点查看详情</p></div></aside>
+      <section class="main-area"><div class="map-head"><div><div id="breadcrumbs" class="breadcrumbs"></div><h2 data-i18n="viewHeading">结构视图</h2></div><div class="map-tools"><button id="back-button" class="tool-button" type="button" data-i18n-label="backLabel" aria-label="返回上一级">←</button><span id="zoom-label">100%</span><button id="zoom-out" class="tool-button" type="button" data-i18n-label="zoomOut" aria-label="缩小">−</button><button id="zoom-in" class="tool-button" type="button" data-i18n-label="zoomIn" aria-label="放大">+</button><div id="relation-toggle" class="relation-toggle" role="group" data-i18n-label="relationLayer" aria-label="关系图层" hidden><button class="relation-mode" type="button" data-relation-mode="import" data-i18n="modeImport" data-i18n-title="modeImportTitle" title="谁 import 谁 —— 箭头指向被依赖的一方，两头都有箭头就是互相引用">依赖</button><button class="relation-mode" type="button" data-relation-mode="shared" data-i18n="modeShared" data-i18n-title="modeSharedTitle" title="两个文件都提到的同一个名字 —— 数据契约">共享</button><button class="relation-mode" type="button" data-relation-mode="off" data-i18n="modeOff" data-i18n-title="modeOffTitle" title="关掉关系图层">关</button></div><button id="reset-button" class="button button-dark" type="button" data-i18n="reset">重置</button></div></div><div id="stage" class="stage"><canvas id="map" data-i18n-label="mapLabel" aria-label="项目结构可视化地图"></canvas><div id="tooltip" class="tooltip" hidden></div><div id="empty-state" class="empty-state" hidden><span data-i18n="noMatch">没有匹配的节点</span><br><small data-i18n="noMatchHint">试试其他关键词</small></div><div id="welcome" class="welcome" hidden><span class="welcome-glyph">⌘</span><strong data-i18n="welcomeTitle">导入一个项目</strong><p data-i18n="welcomeHint">把项目文件夹或 JSON 文件拖到页面上，或者</p><span class="welcome-actions"><button id="welcome-folder" class="button button-dark" type="button" data-i18n="chooseFolder">选择文件夹</button><button id="welcome-import" class="button" type="button" data-i18n="welcomeJson">选择 JSON</button></span></div></div><footer class="statusbar"><span class="status-left"><span id="status" data-i18n="statusPreparing">正在准备地图...</span><span id="notice" class="notice" hidden></span></span><div id="legend" class="legend"></div><span id="selection-status" data-i18n="nothingSelected">未选择节点</span></footer></section>
+      <aside id="inspector" class="inspector"><div class="col-empty"><span class="col-empty-glyph">◎</span><strong data-i18n="inspectorEmptyTitle">选择一个节点</strong><p data-i18n="inspectorEmptyHint">查看它的类型、规模和下属内容</p></div></aside>
+    </section>
+  </main>
+  <!-- The keyboard and the double-click both set this href and click it: a browser only hands a URL
+       to an external protocol handler for a real user gesture. -->
+  <a id="open-link" hidden></a>
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+service:
+  name: polyglot
+  port: 8080
+  replicas: 3
+  limits:
+    cpu: 500m
+    memory: 256Mi
+features:
+  - name: search
+    enabled: true
+  - name: export
+    enabled: false

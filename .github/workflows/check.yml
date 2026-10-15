@@ -1,0 +1,35 @@
+# 纯层 124 项检查不需要浏览器 —— 它把 `@model:pure`、`@graph:pure`、`@layout:pure`、
+# `@i18n:pure` 四个标记区从 app.js 里抽出来在 node 里回放。所以这一步能跑在标准 runner 上，
+# 没有任何额外依赖。像素层（跑 `--url` 时追加的那些，要开着 CDP 的 Chrome）不适合放这里，
+# 留在本地跑。
+#
+# 上面那个 124 不是手写的：D4 拿它和这次运行实际跑过的条数对，加一条检查就会变红。
+# 像素层的条数这里不写，因为 D4 跑在像素层之前，核不到它，写了就只会慢慢失真。
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # 与 package.json 的 engines 一致。check.js 用的是全局 fetch 和全局 WebSocket。
+          node-version: '22'
+      # pipefail 不能省：`| tee` 之后管道的退出码是 tee 的，没有它检查失败这一步也报成功。
+      # tee 另存一份是因为 —— 见下一步。
+      - run: |
+          set -o pipefail
+          npm run check 2>&1 | tee check-output.txt
+      # 这一步是给「看不到日志的人」准备的。Actions 的日志要仓库管理员权限才能下载，
+      # 所以失败的 CI 对外只剩一个 exit code，不说是哪条断言挂了。工件是公开可下载的。
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-output
+          path: check-output.txt

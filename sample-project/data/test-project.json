@@ -1,0 +1,27 @@
+{
+  "name": "atlas-todo-cli",
+  "type": "project",
+  "size": 18,
+  "children": [
+    {
+      "name": "src",
+      "type": "module",
+      "size": 12,
+      "children": [
+        { "name": "index.js", "type": "file", "size": 5, "functions": 1 },
+        { "name": "store.js", "type": "file", "size": 5, "functions": 3 },
+        { "name": "format.js", "type": "file", "size": 2, "functions": 2 }
+      ]
+    },
+    {
+      "name": "test",
+      "type": "module",
+      "size": 4,
+      "children": [
+        { "name": "store.test.js", "type": "file", "size": 4, "functions": 1 }
+      ]
+    },
+    { "name": "package.json", "type": "file", "size": 1, "functions": 0 },
+    { "name": "README.md", "type": "file", "size": 1, "functions": 0 }
+  ]
+}

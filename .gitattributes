@@ -1,0 +1,17 @@
+# 这个仓库的换行符原本是混的 —— viewer/app.js、style.css、index.html 是 CRLF，
+# check.js、scan.js、README 是 LF —— 也就是「每个人按自己机器的 core.autocrlf 各拿各的」那种状态。
+# 它本身不是 bug，但它让同一次改动在不同平台上的 diff 长得不一样，而换行符差异恰好是最难看出真改动的那种。
+# 一行 text=auto 把仓库里的存储形式统一成 LF，工作区交给 git 按平台决定，不再依赖任何人的本地配置。
+* text=auto
+
+# shell 脚本必须在工作区也是 LF。CRLF 会让 `#!/bin/sh` 那行在 Linux 上直接报
+# "bad interpreter: No such file or directory"，而这个仓库里就有这样一个文件。
+*.sh text eol=lf
+
+# 图片按二进制处理，不做任何行尾转换。README 的截图就在 screenshots/ 下。
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

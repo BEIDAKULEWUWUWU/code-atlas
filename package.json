@@ -1,0 +1,30 @@
+{
+  "name": "code-atlas",
+  "version": "1.0.0",
+  "description": "A treemap of a codebase where area is code size — zero dependencies, no build step.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BEIDAKULEWUWUWU/code-atlas.git"
+  },
+  "homepage": "https://BEIDAKULEWUWUWU.github.io/code-atlas/viewer/",
+  "keywords": [
+    "treemap",
+    "codebase-visualization",
+    "visualization",
+    "dependency-graph",
+    "canvas",
+    "zero-dependency"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node tools/serve.js",
+    "scan": "node tools/scan.js",
+    "check": "node viewer/tools/check.js",
+    "shot": "node viewer/tools/shot.js"
+  }
+}
